@@ -1,3 +1,63 @@
+commit 95d3ebc0dca4bb1b4e056d7bca8363fcdf5ccc66
+Merge: 5bb46be 4c78824
+Author: jaybee707 <56205955+jaybee707@users.noreply.github.com>
+Date:   Fri Apr 10 22:10:14 2020 -0700
+
+    Merge pull request #4 from FawzanKhan/master
+    
+    Test Plan doc
+
+commit 5bb46be5c831619e0f174be41af2f525c86a260f
+Merge: 64f9bd3 36fe34f
+Author: jaybee707 <56205955+jaybee707@users.noreply.github.com>
+Date:   Fri Apr 10 22:10:02 2020 -0700
+
+    Merge pull request #5 from tmacdonald2/master
+    
+    Updated UML and updated log file in the repo
+
+commit 4c788244d23563b61064229954affb5144386dee
+Author: Fawzan Khan <fawzankhan6@gmail.com>
+Date:   Fri Apr 10 21:58:05 2020 -0700
+
+    Added Test Plan doc
+
+commit 36fe34f834d1cecad515628f948e4b67c6e8fc13
+Author: Trevor MacDonald <60413413+tmacdonald2@users.noreply.github.com>
+Date:   Fri Apr 10 21:54:09 2020 -0700
+
+    Updated file name
+
+commit cd016a8dadb439d557ef16f26b8aa63c2413f9aa
+Author: Trevor MacDonald <60413413+tmacdonald2@users.noreply.github.com>
+Date:   Fri Apr 10 21:38:22 2020 -0700
+
+    Updated UML
+
+commit 0e5eab2eb47b1f7b4c26a59f9f98ba3546d5a187
+Author: Trevor MacDonald <60413413+tmacdonald2@users.noreply.github.com>
+Date:   Fri Apr 10 21:36:58 2020 -0700
+
+    updated log file
+
+commit a16071dbd640dd63311e724a6da0424d6341b4e7
+Merge: fda9462 64f9bd3
+Author: FawzanKhan <37282230+FawzanKhan@users.noreply.github.com>
+Date:   Fri Apr 10 21:24:24 2020 -0700
+
+    Merge pull request #1 from jaybee707/master
+    
+    Account, Deck, Card classes
+
+commit 64f9bd37853e6d5daf91b43aa7a1e285fe507ec7
+Merge: 4a9950d 9aede8a
+Author: jaybee707 <56205955+jaybee707@users.noreply.github.com>
+Date:   Fri Apr 10 21:12:59 2020 -0700
+
+    Merge pull request #3 from tmacdonald2/master
+    
+    Adding Account, Deck, and Card classes. Also updating the Gantt chart.
+
 commit 9aede8aaafa58b1306a4d4197a5019f54fca605b
 Author: Trevor MacDonald <60413413+tmacdonald2@users.noreply.github.com>
 Date:   Fri Apr 10 16:59:27 2020 -0700

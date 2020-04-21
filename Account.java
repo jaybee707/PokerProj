@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -7,16 +8,21 @@ import java.util.Scanner;
 public class Account {
     private String username;
     private String password;
-    private String full_name;
+    private String first_name;
     private String email;
-    private int total_cash = 50;
-    private int total_winnings = 0;
+    private int total_cash;
+    private int total_winnings;
 
     private String sourceName = "user_info.txt";
 
 
-    // The constructor used to create a new account.
-    public Account(String username, String password, String full_name, String email)
+    public Account()
+    {
+    }
+
+
+    // Sets up a new account
+    public void initializeAccount(String username, String password, String first_name, String email)
     {
         File tempFile = new File(sourceName);
 
@@ -24,29 +30,34 @@ public class Account {
         try
         {
             if (tempFile.createNewFile())
-                System.out.println("User info file created."); //to be deleted
+                System.out.println("user_info.txt file created."); // to be deleted
             else
-                System.out.println("User info file already exists."); //to be deleted
+                System.out.println("");  // user_info.txt file already exists, to be deleted
         }
         catch(IOException e)
         {
             System.out.println("Error checking for file creation.");
         }
 
-        this.username = username;
+        this.username = username;    // Takes the user info from the text file and stores it into the account
         this.password = password;
-        this.full_name = full_name;
+        this.first_name = first_name;
         this.email = email;
+        total_cash = 50;
+        total_winnings = 0;
 
-        /* Lines 43-56 store the new account information into a text file.
-           Only total cash and total winnings can be modified after account creation.
-        */
+        //save?
+    }
+
+
+    public void save()
+    {
         try
         {
             FileWriter filewriter = new FileWriter(sourceName);
 
-            filewriter.write(username + ", " + password + ", " + full_name + ", " + email
-                    + ", " + total_cash + ", " + total_winnings + "\n");
+            filewriter.write(username + ", " + password + ", " + first_name + ", " + email
+                    + ", " + total_cash + ", " + total_winnings); //might need to add \n?
 
             filewriter.close();
         }
@@ -57,28 +68,23 @@ public class Account {
     }
 
 
-    public Account()
+    // Used to display account information.
+    public String toString()
     {
+        return("\nAccount Information\nUsername: " + username + "\nFirst Name: " + first_name +
+                "\nTotal cash: " + total_cash + "\nTotal winnings: " + total_winnings + "\n");
     }
 
                                         /*--------------- Anchors ----------------*/
 
 
-    // Anchor for the GUI to display Profile information.
-    public String toString()
-    {
-        return("Username: " + username + "\nName: " + full_name +
-                "\nTotal cash: " + total_cash + "\nTotal winnings: " + total_winnings);
-    }
-
-
-    // Anchor to display username to other players at the table
+    // Anchor to display a players username to others at the table
     public String getUsername() {
         return username;
     }
 
 
-    // Anchor for checking if a player has sufficient funds
+    // Anchor to check if a player has sufficient funds
     public int getTotal_cash() {
         return total_cash;
     }
@@ -95,8 +101,10 @@ public class Account {
 
     // Anchor for updating a player's total winnings.
     public void setTotal_winnings(int total_winnings_change) {  //this can only be increased
-        this.total_winnings += total_winnings;
+        this.total_winnings += total_winnings_change;
     }
+
+
 
 
     /* Anchor for verifying if a user logged in to their account.
@@ -105,22 +113,20 @@ public class Account {
     the GUI can display a message detailing whether sign in was successful or not.
     A return value of 0 would mean the user signed in successfully.
     A return value of 1 would mean no account information exists on this computer.
-    A return value of 2 would mean the username doesn't exist.
+    A return value of 2 would mean the username was incorrect.
     A return value of 3 would mean the password was incorrect.
     A return value of 4 would would be an exception error.
-     */
+    */
     public int accountValidation(String tempUsername, String tempPassword)
     {
         String nLine;
-        int i = 0;    // i is used incase there are multiple accounts on one computer
-                      // increasing i by 6 means we're checking the next account on the computer
-
-        //  Currently multiple accounts on one computer is Not Supported but this can be added later on.
+        // int i = 0; is used if multiple accounts is supported
+        // increasing i by 6 means we're checking the next account on the computer
 
         File tempFile = new File(sourceName);
         boolean t = tempFile.exists();
 
-        if(!t)  // if file doesn't exist yet
+        if(!t || tempFile.length() == 0)  // if file doesn't exist yet or file is empty
         {
             return 1;
         }
@@ -129,22 +135,34 @@ public class Account {
         {
             try
             {
-                while (txtData.hasNextLine())
+                while(txtData.hasNextLine())
                 {
                     nLine = txtData.nextLine();
                     String[] tempArray = nLine.split(", ");
 
-                    if(tempArray[0+i].equals(tempUsername))
+                    if(tempArray[0].equals(tempUsername))             //ta[0+i] if support for multiple accounts
                     {
-                        if(tempArray[1+i].equals(tempPassword))
-                            return 0;   // username and password are correct, login accepted
+                        if(tempArray[1].equals(tempPassword))         //ta[1+i] if support for multiple accounts
+                        {
+                            // username and password are correct, login accepted
+                            // store user info from text file into account
+
+                            username = tempArray[0];
+                            password = tempArray[1];
+                            first_name = tempArray[2];
+                            email = tempArray[3];
+                            total_cash = Integer.parseInt(tempArray[4]);
+                            total_winnings = Integer.parseInt(tempArray[5]);
+
+                            return 0;
+                        }
                         else
                             return 3;
                     }
                     else
-                        i+=6;
+                        return 2; // else statement with i+=6 if support for multiple accounts, remove return 2 else
                 }
-                return 2;
+                return 1;                // return 2 if support multiple accounts
             }
             catch(ArrayIndexOutOfBoundsException e)
             {
