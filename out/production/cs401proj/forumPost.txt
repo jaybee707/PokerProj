@@ -1,0 +1,6 @@
+New members needed to work on our project!
+An online poker tournament that allows players to play against, communicate, and win prizes by creating an account to join.
+The main goal: the user to get the highest rank of hand each session and win by raise, fold, call, or check.
+
+Current Members: Vanessa Tiffany,Genesis Nunez, & Carlos Vera
+GitHub Repository: https://github.com/Carlosv1232/PokerProj

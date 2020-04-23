@@ -1,0 +1,158 @@
+commit 9d1e82d1a86be7867a43183d1df0e22471e91b4c
+Merge: f5ebe8f dc3f81e
+Author: Carlosv1232 <60190811+Carlosv1232@users.noreply.github.com>
+Date:   Fri Feb 28 10:20:32 2020 -0800
+
+    Merge pull request #7 from Carlosv1232/Carlos
+    
+    Carlos
+
+commit dc3f81eed549462cf26743f722c2a3c13586de95
+Author: Carlosv1232 <60190811+Carlosv1232@users.noreply.github.com>
+Date:   Fri Feb 28 10:09:20 2020 -0800
+
+    Commit for git log
+
+commit 231bae861dbeb88108a76d32c570dfec9c60d63b
+Author: Carlosv1232 <60190811+Carlosv1232@users.noreply.github.com>
+Date:   Fri Feb 28 10:03:45 2020 -0800
+
+    Commit for uploading progress report for phase 3
+
+commit f5ebe8f962440e8e8ea37e72b3941720fb0b7505
+Author: vanessatiffany <60334004+vanessatiffany@users.noreply.github.com>
+Date:   Thu Feb 27 22:00:13 2020 -0800
+
+    Delete Forum Post.txt
+
+commit b9dcf89985fdd3188add90dee7146aa27667074a
+Merge: a092b45 3a14249
+Author: GGGenesis03 <60524454+GGGenesis03@users.noreply.github.com>
+Date:   Thu Feb 27 21:58:52 2020 -0800
+
+    Merge pull request #6 from Carlosv1232/Genesis
+    
+    updated on the forum post
+
+commit 3a14249a48bce68154c5a341951ccda190000b96
+Author: Genesis Nunez <nunez.genesis3@gmail.com>
+Date:   Thu Feb 27 21:52:46 2020 -0800
+
+    updated on the forum post
+
+commit a092b458381a64a5b546087859bb70ee5ef155ad
+Merge: 6e04112 cb1154a
+Author: vanessatiffany <60334004+vanessatiffany@users.noreply.github.com>
+Date:   Thu Feb 27 21:33:21 2020 -0800
+
+    Merge pull request #5 from Carlosv1232/Vanessa
+    
+    Add files via upload
+
+commit cb1154ae0fdc4bc8e30570c215fff1953a66011a
+Author: vanessatiffany <60334004+vanessatiffany@users.noreply.github.com>
+Date:   Thu Feb 27 21:31:28 2020 -0800
+
+    Add files via upload
+
+commit 6e04112913a49c408e7795b398a8a242605c0b38
+Merge: 18479db ca59091
+Author: GGGenesis03 <60524454+GGGenesis03@users.noreply.github.com>
+Date:   Thu Feb 27 17:13:19 2020 -0800
+
+    Merge pull request #4 from Carlosv1232/Genesis
+    
+    This is the document for the personal activity for the project phase 3
+
+commit ca5909120b3383e037d3de754e06f0954aade598
+Author: Genesis Nunez <nunez.genesis3@gmail.com>
+Date:   Thu Feb 27 16:59:35 2020 -0800
+
+    This is the document for the personal activity for the project pahse 3
+
+commit 18479db930bcc2648a3b117c1170942e06005792
+Merge: 84dd583 74cc31c
+Author: GGGenesis03 <60524454+GGGenesis03@users.noreply.github.com>
+Date:   Fri Feb 21 16:04:59 2020 -0800
+
+    Merge pull request #3 from Carlosv1232/Vanessa
+    
+    Add files via upload
+
+commit 84dd58389e00a65e2f1cc2d003e28ad1c3c68481
+Merge: a1914ed dbe5301
+Author: GGGenesis03 <60524454+GGGenesis03@users.noreply.github.com>
+Date:   Fri Feb 21 16:03:57 2020 -0800
+
+    Merge pull request #2 from Carlosv1232/Genesis
+    
+    Gantt Chart
+
+commit a1914edbf08809bb460925a4d8017f46c6afcaca
+Merge: 732d3f4 63364e1
+Author: Carlosv1232 <60190811+Carlosv1232@users.noreply.github.com>
+Date:   Fri Feb 21 15:53:19 2020 -0800
+
+    Merge pull request #1 from Carlosv1232/Carlos
+    
+    phase 2
+
+commit dbe5301546af6f370f95832533480693da2a6d3f
+Author: GGGenesis03 <60524454+GGGenesis03@users.noreply.github.com>
+Date:   Fri Feb 21 12:28:54 2020 -0800
+
+    Add files via upload
+
+commit 74cc31c32818d21c6e1dd597a84c4bee6b556545
+Author: vanessatiffany <60334004+vanessatiffany@users.noreply.github.com>
+Date:   Thu Feb 20 15:11:01 2020 -0800
+
+    Add files via upload
+
+commit 63364e10f7b814c25bd57ed391c9a307c8b150c2
+Author: Carlosv1232 <60190811+Carlosv1232@users.noreply.github.com>
+Date:   Thu Feb 20 09:58:53 2020 -0800
+
+    phase 2
+
+commit 732d3f4ff95235da1c6815a2da1f937f678efb38
+Author: Carlosv1232 <60190811+Carlosv1232@users.noreply.github.com>
+Date:   Wed Feb 19 12:52:39 2020 -0800
+
+    Update README.md
+
+commit 09a0991f96bd9208c4b7ffe0eed0f9222ca8ce97
+Author: vanessatiffany <60334004+vanessatiffany@users.noreply.github.com>
+Date:   Thu Feb 13 18:02:01 2020 -0800
+
+    Delete Calendar
+
+commit 9d05f0deced3370c5ce041fffcb22b69b99078fb
+Author: vanessatiffany <60334004+vanessatiffany@users.noreply.github.com>
+Date:   Thu Feb 13 18:01:50 2020 -0800
+
+    Delete Abstract
+
+commit c42d55136825b7984cf9280ad0cf5b6d64b6f60e
+Author: vanessatiffany <60334004+vanessatiffany@users.noreply.github.com>
+Date:   Tue Feb 11 17:14:49 2020 -0800
+
+    Add files via upload
+
+commit 40716c5cf810d1676dfcc6b90e08e41599ef71ef
+Author: GGGenesis03 <60524454+GGGenesis03@users.noreply.github.com>
+Date:   Tue Feb 4 16:45:47 2020 -0800
+
+    Create Calendar
+
+commit 3706eb475878e5f6e3632d6c8f7ad86a06d48253
+Author: GGGenesis03 <60524454+GGGenesis03@users.noreply.github.com>
+Date:   Tue Feb 4 15:33:00 2020 -0800
+
+    Create Abstract
+
+commit 4a8d2d9d2e61cceddda1107a411b010b31ab2d40
+Author: Carlosv1232 <60190811+Carlosv1232@users.noreply.github.com>
+Date:   Thu Jan 30 20:48:03 2020 -0800
+
+    Initial commit

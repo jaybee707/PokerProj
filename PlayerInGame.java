@@ -13,7 +13,7 @@ public class PlayerInGame {
 
 	//
 	public LinkedList<Card> getTwoCardHand() {
-		return 2CardHand;
+		return twoCardHand;
 	}
 
 	//

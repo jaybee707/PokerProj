@@ -1,0 +1,53 @@
+commit 231bae861dbeb88108a76d32c570dfec9c60d63b
+Author: Carlosv1232 <60190811+Carlosv1232@users.noreply.github.com>
+Date:   Fri Feb 28 10:03:45 2020 -0800
+
+    Commit for uploading progress report for phase 3
+
+commit 63364e10f7b814c25bd57ed391c9a307c8b150c2
+Author: Carlosv1232 <60190811+Carlosv1232@users.noreply.github.com>
+Date:   Thu Feb 20 09:58:53 2020 -0800
+
+    phase 2
+
+commit 732d3f4ff95235da1c6815a2da1f937f678efb38
+Author: Carlosv1232 <60190811+Carlosv1232@users.noreply.github.com>
+Date:   Wed Feb 19 12:52:39 2020 -0800
+
+    Update README.md
+
+commit 09a0991f96bd9208c4b7ffe0eed0f9222ca8ce97
+Author: vanessatiffany <60334004+vanessatiffany@users.noreply.github.com>
+Date:   Thu Feb 13 18:02:01 2020 -0800
+
+    Delete Calendar
+
+commit 9d05f0deced3370c5ce041fffcb22b69b99078fb
+Author: vanessatiffany <60334004+vanessatiffany@users.noreply.github.com>
+Date:   Thu Feb 13 18:01:50 2020 -0800
+
+    Delete Abstract
+
+commit c42d55136825b7984cf9280ad0cf5b6d64b6f60e
+Author: vanessatiffany <60334004+vanessatiffany@users.noreply.github.com>
+Date:   Tue Feb 11 17:14:49 2020 -0800
+
+    Add files via upload
+
+commit 40716c5cf810d1676dfcc6b90e08e41599ef71ef
+Author: GGGenesis03 <60524454+GGGenesis03@users.noreply.github.com>
+Date:   Tue Feb 4 16:45:47 2020 -0800
+
+    Create Calendar
+
+commit 3706eb475878e5f6e3632d6c8f7ad86a06d48253
+Author: GGGenesis03 <60524454+GGGenesis03@users.noreply.github.com>
+Date:   Tue Feb 4 15:33:00 2020 -0800
+
+    Create Abstract
+
+commit 4a8d2d9d2e61cceddda1107a411b010b31ab2d40
+Author: Carlosv1232 <60190811+Carlosv1232@users.noreply.github.com>
+Date:   Thu Jan 30 20:48:03 2020 -0800
+
+    Initial commit

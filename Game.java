@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Random;
 
-import javax.smartcardio.Card;
+
 
 public class Game{
     private boolean winner;
@@ -60,7 +60,7 @@ public class Game{
         }
 
         for(int j = 0; j < inHand.size(); j++){
-            LinkedList<Card> tem = inHand.get(i).getTwoCardHand();
+            LinkedList<Card> tem = inHand.get(j).getTwoCardHand();
             System.out.print(tem.get(0).toString());
             System.out.println(tem.get(1).toString());
 
@@ -99,12 +99,14 @@ public class Game{
         //compares hands to see who wins
         System.out.println("compares hands of players still in hand %n");
         System.out.println("adds pot to winning players chip pool %n");
+        return 1;
     }
 
     private static boolean handWon(LinkedList<PlayerInGame> inHand){
         /*****test cases for only one player left in hand or multiple****/
         //checks for winner before showdown
         System.out.println("if only one player left hand is over");
+        return true;
 
     }
 
@@ -114,7 +116,7 @@ public class Game{
         deal(playersInRound);
         
         preflop(playersInRound);
-        if(handwon(playersInRound)){
+        if(handWon(playersInRound)){
             //return int of winning player
         }
         flop(playersInRound);
