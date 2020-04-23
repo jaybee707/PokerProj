@@ -22,6 +22,7 @@ public class PokerConsoleUI {
         if(userInput == 0)
         {
             // Start Game
+            Game runTest = new Game();
         }
         else if(userInput == 1)
         {
