@@ -4,8 +4,10 @@ import java.io.IOException;
 
 public class Card {
 
-    private String rank;
-    private String suit;
+    private int rankValue;      //rankValue and suitValue are used for comparisons with other cards.
+    private int suitValue;
+    private String rankName;        // rankName and suitName are used for displaying the card in the console.
+    private String suitName;
 
     static int initializer = 0;     // Used to get the next card in the text file
     Card tempCard;
@@ -19,10 +21,12 @@ public class Card {
 
         tempArray = tempCardString.split(",");
 
-        String tempRank = tempArray[0];
-        String tempSuit = tempArray[1];
+        int tempRankValue = Integer.parseInt(tempArray[0]);
+        int tempSuitValue = Integer.parseInt(tempArray[1]);
+        String tempRankName = tempArray[2];
+        String tempSuitName = tempArray[3];
 
-        tempCard = new Card(tempRank, tempSuit);
+        tempCard = new Card(tempRankValue, tempSuitValue, tempRankName, tempSuitName);
     }
 
 
@@ -49,10 +53,12 @@ public class Card {
 
 
     // Used by Card() to set this cards rank and suit. Needed for getCard() to work.
-    public Card(String rank, String suit)
+    public Card(int rank, int suit, String rankName, String suitName)
     {
-        this.rank = rank;
-        this.suit = suit;
+        this.rankValue = rank;
+        this.suitValue = suit;
+        this.rankName = rankName;
+        this.suitName = suitName;
     }
 
 
@@ -69,16 +75,23 @@ public class Card {
     }
 
 
-    public String getRank() {
-        return rank;
+    public int getRankValue() {
+        return rankValue;
     }
 
 
-    public String getSuit() {
-        return suit;
+    public int getSuitValue() {
+        return suitValue;
     }
 
 
+    public String getRankName() {
+        return rankName;
+    }
+
+    public String getSuitName() {
+        return suitName;
+    }
                                             /*--------------- Anchors ----------------*/
 
 
@@ -86,7 +99,7 @@ public class Card {
     // I used this when I drew a card and wanted to make sure it was the first card in the deck.
     public String toString()
     {
-        return (rank + " of " + suit);
+        return (rankName + " of " + suitName);
     }
 }
 

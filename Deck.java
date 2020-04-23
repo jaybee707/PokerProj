@@ -64,6 +64,6 @@ public class Deck {
     public void displayDeck()
     {
         for (int i = 0; i < cardDeck.size();i++)
-            System.out.println(cardDeck.get(i).getRank() + " of " + cardDeck.get(i).getSuit());
+            System.out.println(cardDeck.get(i).getRankName() + " of " + cardDeck.get(i).getSuitName());
     }
 }
