@@ -1,17 +1,18 @@
 import java.util.LinkedList;
 
 public class PlayerInGame {
-	private LinkedList<card> twoCardHand;
-	private LinkedList<card> fiveCardHand;
+	private LinkedList<Card> twoCardHand;
+	private LinkedList<Card> fiveCardHand;
 	private chipCount;
 
 	// Constructor: Sets chipCount and the two card hand the player has
-	public PlayerInGame(LinkedList<card> playerHand, int count){
-
+	public PlayerInGame(LinkedList<Card> playerHand, int count){
+		twoCardHand = playerHand;
+		chipCount = count;
 	}
 
 	//
-	public LinkedList<card> getTwoCardHand() {
+	public LinkedList<Card> getTwoCardHand() {
 		return 2CardHand;
 	}
 
@@ -22,18 +23,22 @@ public class PlayerInGame {
 
 	//
 	public void addChips(int chips) {
+		chipCount += chips;
+	}
 
+	public void receiveCard(Card newCard) {
+		twoCardHand.add(newCard);
 	}
 
 
 	/******* This function needs to be tested using JUnit, add to Test Plan *******/
-	public void setBestFiveCardHand(LinkedList<card> hand) {
+	public void setBestFiveCardHand(LinkedList<Card> hand) {
 		// Takes in the community 5 card hand as a paramater and sets the players fiveCardHand to
 		// the best 5 card hand the player can have using the 2 cards hand they currently have
 	}
 
 	//
-	public LinkedList<card> getFiveCardHand() {
+	public LinkedList<Card> getFiveCardHand() {
 		return fiveCardHand;
 	}
 
