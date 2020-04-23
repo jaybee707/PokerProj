@@ -2,6 +2,8 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Random;
 
+import javax.smartcardio.Card;
+
 public class Game{
     private boolean winner;
     private static LinkedList<PlayerInGame> players;
@@ -53,7 +55,16 @@ public class Game{
         //function for dealing players their cards
         System.out.println("deals cards");
 
-        //ListIterator
+        for(int i = 0; i < (2 * inHand.size()); i++){
+            inHand.get(i % inHand.size()).receiveCard(dealer.drawCard());
+        }
+
+        for(int j = 0; j < inHand.size(); j++){
+            LinkedList<Card> tem = inHand.get(i).getTwoCardHand();
+            System.out.print(tem.get(0).toString());
+            System.out.println(tem.get(1).toString());
+
+        }
         
 
     }
@@ -90,7 +101,7 @@ public class Game{
         System.out.println("adds pot to winning players chip pool %n");
     }
 
-    private static boolean handWon(){
+    private static boolean handWon(LinkedList<PlayerInGame> inHand){
         /*****test cases for only one player left in hand or multiple****/
         //checks for winner before showdown
         System.out.println("if only one player left hand is over");
@@ -100,25 +111,25 @@ public class Game{
     private static int round(){
         dealer.shuffleDeck();
         LinkedList<PlayerInGame> playersInRound = players;
-        deal();
+        deal(playersInRound);
         
-        preflop();
-        if(handwon()){
+        preflop(playersInRound);
+        if(handwon(playersInRound)){
             //return int of winning player
         }
-        flop();
+        flop(playersInRound);
         //if(handwon()){
             //return int of winning player
         //}
-        turn();
+        turn(playersInRound);
         //if(handwon()){
             //return int of winning player
         //}
-        river();
+        river(playersInRound);
         //if(handwon()){
             //return int of winning player
         //}
-        return showdown();
+        return showdown(playersInRound);
         /***test case to make sure proper int is being sent back****/
         /***test case to make sure money goes to correct player****/
     }
