@@ -6,8 +6,9 @@ public class PlayerInGame {
 	private int chipCount;
 
 	// Constructor: Sets chipCount and the two card hand the player has
-	public PlayerInGame(LinkedList<Card> playerHand, int count){
-		twoCardHand = playerHand;
+	public PlayerInGame(/*LinkedList<Card> playerHand,*/ int count){
+		//twoCardHand = playerHand;
+		twoCardHand = new LinkedList<Card>();
 		chipCount = count;
 	}
 

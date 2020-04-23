@@ -14,10 +14,11 @@ public class Game{
 
     public Game(){
         //runs the game until winner == true
-        LinkedList<Card> temp = new LinkedList<Card>();
+        //LinkedList<Card> temp = new LinkedList<Card>();
+        players = new LinkedList<PlayerInGame>();
         for(int i = 0; i < 3; i++){
-            PlayerInGame n = new PlayerInGame(temp, 10000);
-            players.push(n);
+            PlayerInGame n = new PlayerInGame(/*temp, */10000);
+            players.add(n);
         }
         dealer = new Deck();
         winner = false;
@@ -72,40 +73,40 @@ public class Game{
     private static void preflop(LinkedList<PlayerInGame> inHand){
         /****test cases to make sure chip counts and pots are properly updated applies to flop, turn, etc***/
         //function for preflop betting
-        System.out.println("starting with the player on the button, players take turns betting %n");
-        System.out.println("round of betting ends when everyone matches highest amount bet or folds %n");
+        System.out.println("starting with the player on the button, players take turns betting \n");
+        System.out.println("round of betting ends when everyone matches highest amount bet or folds \n");
 
     }
 
     private static void flop(LinkedList<PlayerInGame> inHand){
         //function for flop betting
-        System.out.println("dealer adds three cards to community pool %n");
-        System.out.println("another round of betting %n");
+        System.out.println("dealer adds three cards to community pool \n");
+        System.out.println("another round of betting \n");
     }
 
     private static void turn(LinkedList<PlayerInGame> inHand){
         //function for turn betting
-        System.out.println("dealer adds a fourth card to community pool %n");
-        System.out.println("another round of betting %n");
+        System.out.println("dealer adds a fourth card to community pool \n");
+        System.out.println("another round of betting \n");
     }
 
     private static void river(LinkedList<PlayerInGame> inHand){
         //function for river betting
-        System.out.println("dealer adds a fifth card to community pool %n");
-        System.out.println("another round of betting %n");
+        System.out.println("dealer adds a fifth card to community pool \n");
+        System.out.println("another round of betting \n");
     }
 
     private static int showdown(LinkedList<PlayerInGame> inHand){
         //compares hands to see who wins
-        System.out.println("compares hands of players still in hand %n");
-        System.out.println("adds pot to winning players chip pool %n");
+        System.out.println("compares hands of players still in hand \n");
+        System.out.println("adds pot to winning players chip pool \n");
         return 1;
     }
 
     private static boolean handWon(LinkedList<PlayerInGame> inHand){
         /*****test cases for only one player left in hand or multiple****/
         //checks for winner before showdown
-        System.out.println("if only one player left hand is over");
+        System.out.println("if only one player left hand is over\n");
         return true;
 
     }
