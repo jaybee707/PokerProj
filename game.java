@@ -6,12 +6,17 @@ public class Game{
     private boolean winner;
     private static LinkedList<PlayerInGame> players;
     private static Deck dealer;
-    private LinkedList<card> community;
+    private LinkedList<Card> community;
     private int mainPot;
     private int dealerButton;
 
     public Game(){
         //runs the game until winner == true
+        LinkedList<Card> temp = new LinkedList<Card>();
+        for(int i = 0; i < 3; i++){
+            PlayerInGame n = new PlayerInGame(temp, 10000);
+            players.push(n);
+        }
         dealer = new Deck();
         winner = false;
         Random rand = new Random();
@@ -47,6 +52,8 @@ public class Game{
         /****test cases to make sure cards are coming out in order to the right players***/
         //function for dealing players their cards
         System.out.println("deals cards");
+
+        //ListIterator
         
 
     }
@@ -92,7 +99,7 @@ public class Game{
 
     private static int round(){
         dealer.shuffleDeck();
-        LinkedList<PlayerInGame> playersInRound;
+        LinkedList<PlayerInGame> playersInRound = players;
         deal();
         
         preflop();

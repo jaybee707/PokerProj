@@ -3,7 +3,7 @@ import java.util.LinkedList;
 public class PlayerInGame {
 	private LinkedList<Card> twoCardHand;
 	private LinkedList<Card> fiveCardHand;
-	private chipCount;
+	private int chipCount;
 
 	// Constructor: Sets chipCount and the two card hand the player has
 	public PlayerInGame(LinkedList<Card> playerHand, int count){
