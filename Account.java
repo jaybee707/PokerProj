@@ -83,10 +83,17 @@ public class Account {
         return username;
     }
 
+    public String getFirst_name() {
+        return first_name;
+    }
 
     // Anchor to check if a player has sufficient funds
     public int getTotal_cash() {
         return total_cash;
+    }
+
+    public int getTotal_winnings() {
+        return total_winnings;
     }
 
 
