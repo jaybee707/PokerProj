@@ -33,7 +33,7 @@ public class Game{
         }
         dealer = new Deck();
         winner = false;
-        
+
         dealerButton = 0;
         mainPot = 0;
         curBlind = 0;
@@ -74,7 +74,7 @@ public class Game{
             System.out.println(tem.get(1).toString());
 
         }
-        
+
 
     }
 
@@ -107,7 +107,7 @@ public class Game{
         for(int i = 0; i < 3; i++){
             community.add(dealer.drawCard());
         }
-        
+
         biggestBet = 0;
 
         do{
@@ -126,7 +126,7 @@ public class Game{
         }
         dealer.drawCard();
         community.add(dealer.drawCard());
-        
+
         biggestBet = 0;
         do{
             getTurn(0);
@@ -156,17 +156,17 @@ public class Game{
 
     private static int showdown(){
         //compares hands to see who wins
-        
+
         int highest = -1;
         int highestIndex = 0;
 
         for(int i = 0; i < players.size(); i++){
             if(players.get(i).getHandRank() > highest &&
-               players.get(i).getInHand()){
+                    players.get(i).getInHand()){
                 highest = players.get(i).getHandRank();
                 highestIndex = i;
             }else if(players.get(i).getHandRank() == highest &&
-                     ){
+            ){
                 highestIndex = compareKickers(i, highestIndex);
             }else if(players.get(i).getHandRank() < highest){
                 players.get(i).setInHand(false);
@@ -180,7 +180,7 @@ public class Game{
             for(int i = 0; i < players.size(); i++){
                 if(players.get(i).getInHand()){
                     numWinners++;
-                    winIndex[i] = true; 
+                    winIndex[i] = true;
                 }
             }
 
@@ -236,7 +236,7 @@ public class Game{
                 numInHand++;
             }
         }
-        
+
         if(numInHand == 1){
             return true;
         }else {
@@ -247,7 +247,7 @@ public class Game{
 
     private static int round(){
         dealer.shuffleDeck();
-        
+
         for(int i = 0; i < players.size(); i++){
             players.get(i).setInHand(true);
         }
@@ -335,17 +335,17 @@ public class Game{
                     break;
             }
         }
-   }
-   
+    }
+
     private static boolean potsRight(){
-       boolean pr = true;
-       for(int i = 0; i < players.size(); i++){
-           if(players.get(i).getTotalInvest() != biggestBet && !players.get(i).isAllIn()
-                && players.get(i).getInHand()){
-               pr = false;
-               break;
-           }
-       }
-       return pr;
-    } 
+        boolean pr = true;
+        for(int i = 0; i < players.size(); i++){
+            if(players.get(i).getTotalInvest() != biggestBet && !players.get(i).isAllIn()
+                    && players.get(i).getInHand()){
+                pr = false;
+                break;
+            }
+        }
+        return pr;
+    }
 }
