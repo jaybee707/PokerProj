@@ -29,6 +29,7 @@ public class Game{
         //runs the game until winner == true
         //LinkedList<Card> temp = new LinkedList<Card>();
         players = new LinkedList<PlayerInGame>();
+        community = new LinkedList<Card>();
         for(int i = 0; i < 2; i++){
             PlayerInGame n = new PlayerInGame(/*temp, */10000, true);
             players.add(n);
@@ -43,17 +44,24 @@ public class Game{
         smallBlind = blindSchedule[curBlind];
         blindClock.scheduleAtFixedRate(changeClock, 1000 * 60 * 15, 1000 * 60 * 15);
 
-
+        System.out.println("let the games begin!");
         while(winner == false){         //*****winner being t/f needs to be a test case*****/
-            System.out.println("let the games begin!");
+
             round();
             for(int i = 0; i < players.size(); i++){
-                if(players.get(i).getChipCount() == 0){
+                if(players.get(i).getChipCount() <= 0){
                     players.remove(i);
                 }
             }
+            for(int i = 0; i < players.size(); i++){
+                players.get(i).resetHand();
+                System.out.println("player " + i + " " + players.get(i).getChipCount());
+                players.get(i).setInHand(true);
+            }
             mainPot = 0;
-            players.add(players.removeFirst());
+            community.clear();
+            PlayerInGame temp = players.removeFirst();
+            players.add(temp);
             dealer.resetDeck();
             dealer.shuffleDeck();
             winner = tourneyWin();
@@ -95,30 +103,35 @@ public class Game{
 
         for(int i = 0; i < players.size(); i++){
             if(!players.get(i).getAI()){
-                LinkedList<Card> temp = players.get(i).getTwoCardHand();
-                System.out.println(temp.get(0).toString() + temp.get(1).toString());
+
+                System.out.println(players.get(i).getTwoCardHand().get(0).toString() + players.get(i).getTwoCardHand().get(1).toString());
             }
         }
 
         do{
-            if(players.get((players.size() - 1)).getAI()){
+            if(!checkForWin() && players.get((players.size() - 1)).getAI() && players.get(players.size() - 1).getInHand()){
                 AIFlopBet(players.size() - 1);
             }
-            else{
+            else if (!checkForWin()){
                 getTurn(players.size() - 1);
             }
-            if(players.get(0).getAI()){
+
+            if(!checkForWin() && players.get(0).getAI() && players.get(0).getInHand()){
                 AIFlopBet(0);
-            } else {
+            } else if(!checkForWin()) {
                 getTurn(0);
             }
+
             if(players.size() == 3){
-                if(players.get(1).getAI()){
+                if(!checkForWin() && players.get(1).getAI() && players.get(0).getInHand()){
                     AIFlopBet(1);
                 }
-                else{
+                else if (!checkForWin()){
                     getTurn(1);
                 }
+            }
+            if(checkForWin()){
+                break;
             }
         }while(!potsRight());
 
@@ -142,8 +155,7 @@ public class Game{
         System.out.println(communityPool);
         for(int i = 0; i < players.size(); i++){
             if(!players.get(i).getAI()){
-                LinkedList<Card> temp = players.get(i).getTwoCardHand();
-                System.out.println(temp.get(0).toString() + temp.get(1).toString());
+                System.out.println(players.get(i).getTwoCardHand().get(0).toString() + players.get(i).getTwoCardHand().get(1).toString());
             }
         }
 
@@ -151,24 +163,27 @@ public class Game{
         biggestBet = 0;
 
         do{
-            if(players.get(0).getAI()){
+            if(!checkForWin() && players.get(0).getAI() && players.get(0).getInHand()){
                 AIPostBet(0);
             }
-            else{
+            else if(!checkForWin()){
                 getTurn(0);
             }
-            if(players.get(1).getAI()){
+            if(!checkForWin() && players.get(1).getAI() && players.get(1).getInHand()){
                 AIPostBet(1);
-            } else {
+            } else if(!checkForWin()) {
                 getTurn(1);
             }
             if(players.size() == 3){
-                if(players.get(2).getAI()){
+                if(!checkForWin() && players.get(2).getAI() && players.get(2).getInHand()){
                     AIPostBet(2);
                 }
-                else{
+                else if(!checkForWin()){
                     getTurn(2);
                 }
+            }
+            if(checkForWin()){
+                break;
             }
         }while(!potsRight());
     }
@@ -189,31 +204,33 @@ public class Game{
         System.out.println(communityPool);
         for(int i = 0; i < players.size(); i++){
             if(!players.get(i).getAI()){
-                LinkedList<Card> temp = players.get(i).getTwoCardHand();
-                System.out.println(temp.get(0).toString() + temp.get(1).toString());
+                System.out.println(players.get(i).getTwoCardHand().get(0).toString() + players.get(i).getTwoCardHand().get(1).toString());
             }
         }
 
         biggestBet = 0;
         do{
-            if(players.get(0).getAI()){
+            if(!checkForWin() && players.get(0).getAI() && players.get(0).getInHand()){
                 AIPostBet(0);
             }
-            else{
+            else if (!checkForWin()){
                 getTurn(0);
             }
-            if(players.get(1).getAI()){
+            if(!checkForWin() && players.get(1).getAI() && players.get(1).getInHand()){
                 AIPostBet(1);
-            } else {
+            } else if(!checkForWin()) {
                 getTurn(1);
             }
             if(players.size() == 3){
-                if(players.get(2).getAI()){
+                if(!checkForWin() && players.get(2).getAI() && players.get(2).getInHand()){
                     AIPostBet(2);
                 }
-                else{
+                else if(!checkForWin()){
                     getTurn(2);
                 }
+            }
+            if(checkForWin()){
+                break;
             }
         }while(!potsRight());
     }
@@ -234,31 +251,33 @@ public class Game{
         System.out.println(communityPool);
         for(int i = 0; i < players.size(); i++){
             if(!players.get(i).getAI()){
-                LinkedList<Card> temp = players.get(i).getTwoCardHand();
-                System.out.println(temp.get(0).toString() + temp.get(1).toString());
+                System.out.println(players.get(i).getTwoCardHand().get(0).toString() + players.get(i).getTwoCardHand().get(1).toString());
             }
         }
 
         biggestBet = 0;
         do{
-            if(players.get(0).getAI()){
+            if(!checkForWin() && players.get(0).getAI() && players.get(0).getInHand()){
                 AIPostBet(0);
             }
-            else{
+            else if(!checkForWin()){
                 getTurn(0);
             }
-            if(players.get(1).getAI()){
+            if(!checkForWin() && players.get(1).getAI() && players.get(1).getInHand()){
                 AIPostBet(1);
-            } else {
+            } else if(!checkForWin()){
                 getTurn(1);
             }
             if(players.size() == 3){
-                if(players.get(2).getAI()){
+                if(!checkForWin() && players.get(2).getAI() && players.get(2).getInHand()){
                     AIPostBet(2);
                 }
-                else{
+                else if(!checkForWin()){
                     getTurn(2);
                 }
+            }
+            if(checkForWin()){
+                break;
             }
         }while(!potsRight());
     }
@@ -362,33 +381,40 @@ public class Game{
         if(handWon()){
             for(int i = 0; i < players.size(); i++){
                 if(players.get(i).getInHand()){
+                    System.out.println("adding chips to winning player");
                     players.get(i).addChips(mainPot);
                     return 1;
                 }
             }
         }
+        System.out.println(mainPot);
         flop();
         if(handWon()){
             for(int i = 0; i < players.size(); i++){
                 if(players.get(i).getInHand()){
+                    System.out.println("adding chips to winning player");
                     players.get(i).addChips(mainPot);
                     return 1;
                 }
             }
         }
+        System.out.println(mainPot);
         turn();
         if(handWon()){
             for(int i = 0; i < players.size(); i++){
                 if(players.get(i).getInHand()){
+                    System.out.println("adding chips to winning player");
                     players.get(i).addChips(mainPot);
                     return 1;
                 }
             }
         }
+        System.out.println(mainPot);
         river();
         if(handWon()){
             for(int i = 0; i < players.size(); i++){
                 if(players.get(i).getInHand()){
+                    System.out.println("adding chips to winning player");
                     players.get(i).addChips(mainPot);
                     return 1;
                 }
@@ -445,8 +471,9 @@ public class Game{
                 default:
                     break;
             }
+            break;
         }
-        sc.close();
+
     }
 
     private static boolean potsRight(){
@@ -465,6 +492,7 @@ public class Game{
         LinkedList<Card> aiHand = players.get(index).getTwoCardHand();
         int value1 = aiHand.get(0).getRankValue();
         int value2 = aiHand.get(1).getRankValue();
+
 
         if(value1 == value2){
             if(players.get(index).getTotalInvest() == 0){
@@ -514,6 +542,22 @@ public class Game{
         } else {
             players.get(index).fold();
             System.out.println("player " + index + " folds");
+        }
+    }
+
+    private static boolean checkForWin(){
+
+        int numInHand = 0;
+        for(int i = 0; i < players.size(); i++){
+            if(players.get(i).getInHand()){
+                numInHand++;
+            }
+        }
+        if(numInHand > 1){
+            return false;
+        }
+        else {
+            return true;
         }
     }
 }

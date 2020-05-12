@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class HandRankTest {
 
-	PlayerInGame p = new PlayerInGame(5);
+	PlayerInGame p = new PlayerInGame(5, false);
 	
 	@Test
 	public void StraightFlushTest() {
