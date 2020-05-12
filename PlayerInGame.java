@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class PlayerInGame {
 	private LinkedList<Card> twoCardHand;
@@ -12,6 +13,8 @@ public class PlayerInGame {
 	private int chipCount;
 	private int totalInvest;
 	private boolean inHand;
+	private boolean ai;
+	private boolean allIn;
 
 	private static final int STRAIGHT_FLUSH = 9;
 	private static final int FOUR_OF_A_KIND = 8;
@@ -24,11 +27,17 @@ public class PlayerInGame {
 	private static final int HIGH_CARD = 1;
 
 	// Constructor: Sets chipCount and the two card hand the player has
-	public PlayerInGame(/* LinkedList<Card> playerHand, */ int count) {
+	public PlayerInGame(/* LinkedList<Card> playerHand, */ int count, boolean com) {
 		// twoCardHand = playerHand;
 		twoCardHand = new LinkedList<Card>();
 		chipCount = count;
+		ai = com;
 	}
+
+	public boolean getAI(){
+		return ai;
+	}
+
 
 	//
 	public LinkedList<Card> getTwoCardHand() {
@@ -84,22 +93,59 @@ public class PlayerInGame {
 
 	//
 	public void check() {
-
+		return;
 	}
 
 	//
 	public void fold() {
-
+		inHand = false;
+		twoCardHand = null;
 	}
 
 	//
 	public int bet(int biggestBet) {
-		return 0;
+		int betAmount;
+		if(ai){
+			if(biggestBet == 0){
+				betAmount = chipCount / 10;
+				chipCount -= betAmount;
+				totalInvest += betAmount;
+				if(chipCount <= 0 && totalInvest > 0){
+					allIn = true;
+				}
+				return betAmount;
+			} else {
+				betAmount = biggestBet * 2;
+				chipCount -= betAmount;
+				totalInvest += betAmount;
+				if(chipCount <= 0 && totalInvest > 0){
+					allIn = true;
+				}
+				return betAmount;
+			}
+		}
+		else{
+			System.out.println("how much to bet from " + biggestBet + " to " + chipCount);
+			Scanner in = new Scanner(System.in);
+			betAmount = in.nextInt();
+			chipCount -= betAmount;
+			totalInvest += betAmount;
+			if(chipCount <= 0 && totalInvest > 0){
+				allIn = true;
+			}
+			return betAmount;
+		}
+
 	}
 
 	//
 	public int call(int biggestBet) {
-		return 0;
+		chipCount -= biggestBet - totalInvest;
+		totalInvest = biggestBet;
+		if(chipCount <= 0 && totalInvest > 0){
+			allIn = true;
+		}
+		return biggestBet - totalInvest;
 	}
 
 	public int blind(int amount) {
@@ -107,6 +153,11 @@ public class PlayerInGame {
 		totalInvest += amount;
 		return amount;
 	}
+
+	public boolean isAllIn(){
+		return allIn;
+	}
+
 
 	public int getTotalInvest() {
 		return totalInvest;
@@ -802,4 +853,5 @@ public class PlayerInGame {
 
 	/************** END OF 4 OF KIND, 3 OF KIND, FULL HOUSE, 2 PAIR, PAIR AND HIGH CARD FUNCTIONS **************/
 
+}
 }

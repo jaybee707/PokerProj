@@ -2,6 +2,8 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 
@@ -23,14 +25,15 @@ public class Game{
         }
     };
 
-    public Game(){
+    public Game(PlayerInGame p){
         //runs the game until winner == true
         //LinkedList<Card> temp = new LinkedList<Card>();
         players = new LinkedList<PlayerInGame>();
-        for(int i = 0; i < 3; i++){
-            PlayerInGame n = new PlayerInGame(/*temp, */10000);
+        for(int i = 0; i < 2; i++){
+            PlayerInGame n = new PlayerInGame(/*temp, */10000, true);
             players.add(n);
         }
+        players.add(p);
         dealer = new Deck();
         winner = false;
 
@@ -89,10 +92,24 @@ public class Game{
         biggestBet = smallBlind * 2;
         deal();
         do{
-            getTurn(players.size() - 1);
-            getTurn(0);
+            if(players.get((players.size() - 1)).getAI()){
+                AIFlopBet(players.size() - 1);
+            }
+            else{
+                getTurn(players.size() - 1);
+            }
+            if(players.get(0).getAI()){
+                AIFlopBet(0);
+            } else {
+                getTurn(0);
+            }
             if(players.size() == 3){
-                getTurn(1);
+                if(players.get(1).getAI()){
+                    AIFlopBet(1);
+                }
+                else{
+                    getTurn(1);
+                }
             }
         }while(!potsRight());
 
@@ -111,10 +128,24 @@ public class Game{
         biggestBet = 0;
 
         do{
-            getTurn(0);
-            getTurn(1);
+            if(players.get(0).getAI()){
+                AIPostBet(0);
+            }
+            else{
+                getTurn(0);
+            }
+            if(players.get(1).getAI()){
+                AIPostBet(1);
+            } else {
+                getTurn(1);
+            }
             if(players.size() == 3){
-                getTurn(2);
+                if(players.get(2).getAI()){
+                    AIPostBet(2);
+                }
+                else{
+                    getTurn(2);
+                }
             }
         }while(!potsRight());
     }
@@ -129,10 +160,24 @@ public class Game{
 
         biggestBet = 0;
         do{
-            getTurn(0);
-            getTurn(1);
+            if(players.get(0).getAI()){
+                AIPostBet(0);
+            }
+            else{
+                getTurn(0);
+            }
+            if(players.get(1).getAI()){
+                AIPostBet(1);
+            } else {
+                getTurn(1);
+            }
             if(players.size() == 3){
-                getTurn(2);
+                if(players.get(2).getAI()){
+                    AIPostBet(2);
+                }
+                else{
+                    getTurn(2);
+                }
             }
         }while(!potsRight());
     }
@@ -146,10 +191,24 @@ public class Game{
         community.add(dealer.drawCard());
         biggestBet = 0;
         do{
-            getTurn(0);
-            getTurn(1);
+            if(players.get(0).getAI()){
+                AIPostBet(0);
+            }
+            else{
+                getTurn(0);
+            }
+            if(players.get(1).getAI()){
+                AIPostBet(1);
+            } else {
+                getTurn(1);
+            }
             if(players.size() == 3){
-                getTurn(2);
+                if(players.get(2).getAI()){
+                    AIPostBet(2);
+                }
+                else{
+                    getTurn(2);
+                }
             }
         }while(!potsRight());
     }
@@ -166,6 +225,7 @@ public class Game{
                 highest = players.get(i).getHandRank();
                 highestIndex = i;
             }else if(players.get(i).getHandRank() == highest &&
+                     players.get(i).getInHand()
             ){
                 highestIndex = compareKickers(i, highestIndex);
             }else if(players.get(i).getHandRank() < highest){
@@ -261,7 +321,7 @@ public class Game{
             }
         }
         flop();
-        if(handwon()){
+        if(handWon()){
             for(int i = 0; i < players.size(); i++){
                 if(players.get(i).getInHand()){
                     players.get(i).addChips(mainPot);
@@ -270,7 +330,7 @@ public class Game{
             }
         }
         turn();
-        if(handwon()){
+        if(handWon()){
             for(int i = 0; i < players.size(); i++){
                 if(players.get(i).getInHand()){
                     players.get(i).addChips(mainPot);
@@ -279,7 +339,7 @@ public class Game{
             }
         }
         river();
-        if(handwon()){
+        if(handWon()){
             for(int i = 0; i < players.size(); i++){
                 if(players.get(i).getInHand()){
                     players.get(i).addChips(mainPot);
@@ -299,14 +359,14 @@ public class Game{
         else{
             return false;
         }
-        return true;
+
     }
 
     private static void getTurn(int action){
         Scanner sc = new Scanner(System.in);
         int userIn;
 
-        while(players.get(action).getInHand()){
+        while(players.get(action).getInHand() && !players.get(action).getAI()){
             if(biggestBet == 0){
                 System.out.print("1 for check, 2 to raise, 3 to fold");
             }
@@ -319,22 +379,27 @@ public class Game{
                 case 1:
                     if(biggestBet == 0){
                         players.get(action).check();
+                        System.out.println("player " + action + " checks");
                     }
                     else{
                         mainPot += players.get(action).call(biggestBet);
+                        System.out.println("player " + action + " calls " + biggestBet);
                     }
                     break;
                 case 2:
                     mainPot += players.get(action).bet(biggestBet);
                     biggestBet = players.get(action).getTotalInvest();
+                    System.out.println("player " + action + " raised to " + biggestBet);
                     break;
                 case 3:
                     players.get(action).fold();
+                    System.out.println("player " + action + " folds");
                     break;
                 default:
                     break;
             }
         }
+
     }
 
     private static boolean potsRight(){
@@ -347,5 +412,61 @@ public class Game{
             }
         }
         return pr;
+    }
+
+    private static void AIFlopBet(int index){
+        LinkedList<Card> aiHand = players.get(index).getTwoCardHand();
+        int value1 = aiHand.get(0).getRankValue();
+        int value2 = aiHand.get(1).getRankValue();
+
+        if(value1 == value2){
+            if(players.get(index).getTotalInvest() == 0){
+                mainPot += players.get(index).bet(biggestBet);
+                biggestBet = players.get(index).getTotalInvest();
+                System.out.println("player " + index + " raised to " + biggestBet);
+            } else {
+                mainPot += players.get(index).call(biggestBet);
+                System.out.println("player " + index + " calls " + biggestBet);
+            }
+        } else if (((value1 == 14) || (value2 == 14)) && (value1 > 11 || value2 > 11)){
+            if(players.get(index).getTotalInvest() == 0){
+                mainPot += players.get(index).bet(biggestBet);
+                biggestBet = players.get(index).getTotalInvest();
+                System.out.println("player " + index + " raised to " + biggestBet);
+            } else {
+                mainPot += players.get(index).call(biggestBet);
+                System.out.println("player " + index + " calls " + biggestBet);
+            }
+        } else if ((value1 + value2) > 15){
+            players.get(index).call(biggestBet);
+            System.out.println("player " + index + " calls " + biggestBet);
+        } else {
+            players.get(index).fold();
+            System.out.println("player " + index + " folds");
+        }
+    }
+
+    private static void AIPostBet(int index){
+        if(players.get(index).getHandRank() > 4 && players.get(index).getTotalInvest() == 0){
+            mainPot += players.get(index).bet(biggestBet);
+            biggestBet = players.get(index).getTotalInvest();
+            System.out.println("player " + index + " raised to " + biggestBet);
+        } else if (players.get(index).getHandRank() > 4 && players.get(index).getTotalInvest() > 0) {
+            mainPot += players.get(index).call(biggestBet);
+            System.out.println("player " + index + " calls " + biggestBet);
+        } else if(players.get(index).getHandRank() > 1 && biggestBet > 0){
+            mainPot += players.get(index).call(biggestBet);
+            System.out.println("player " + index + " calls " + biggestBet);
+        } else if(players.get(index).getHandRank() > 1 && biggestBet == 0){
+            mainPot += players.get(index).bet(biggestBet);
+            biggestBet = players.get(index).getTotalInvest();
+            System.out.println("player " + index + " raised to " + biggestBet);
+        } else if(players.get(index).getHandRank() == 1 && biggestBet == 0){
+            players.get(index).check();
+            System.out.println("player " + index + " checks");
+        } else {
+            players.get(index).fold();
+            System.out.println("player " + index + " folds");
+        }
     }
 }
