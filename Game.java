@@ -25,7 +25,7 @@ public class Game{
         }
     };
 
-    public Game(PlayerInGame p){
+    public Game(){
         //runs the game until winner == true
         //LinkedList<Card> temp = new LinkedList<Card>();
         players = new LinkedList<PlayerInGame>();
@@ -33,7 +33,7 @@ public class Game{
             PlayerInGame n = new PlayerInGame(/*temp, */10000, true);
             players.add(n);
         }
-        players.add(p);
+        players.add(new PlayerInGame(10000, false));
         dealer = new Deck();
         winner = false;
 
@@ -45,6 +45,7 @@ public class Game{
 
 
         while(winner == false){         //*****winner being t/f needs to be a test case*****/
+            System.out.println("let the games begin!");
             round();
             for(int i = 0; i < players.size(); i++){
                 if(players.get(i).getChipCount() == 0){
@@ -58,8 +59,12 @@ public class Game{
             winner = tourneyWin();
         }
 
-
-
+        if(players.get(0).getAI()){
+            System.out.println("other player wins!");
+        }
+        else{
+            System.out.println("you win!");
+        }
     }
 
     private static void deal(){
@@ -71,12 +76,6 @@ public class Game{
             players.get(i % players.size()).receiveCard(dealer.drawCard());
         }
 
-        for(int j = 0; j < players.size(); j++){
-            LinkedList<Card> tem = players.get(j).getTwoCardHand();
-            System.out.print(tem.get(0).toString());
-            System.out.println(tem.get(1).toString());
-
-        }
 
 
     }
@@ -84,6 +83,8 @@ public class Game{
     private static void preflop(){
         /****test cases to make sure chip counts and pots are properly updated applies to flop, turn, etc***/
         //function for preflop betting
+
+
         for(int i = 0; i < players.size(); i++){
             players.get(i).resetTotalInvest();
         }
@@ -91,6 +92,14 @@ public class Game{
         mainPot += players.get(1).blind(smallBlind * 2);
         biggestBet = smallBlind * 2;
         deal();
+
+        for(int i = 0; i < players.size(); i++){
+            if(!players.get(i).getAI()){
+                LinkedList<Card> temp = players.get(i).getTwoCardHand();
+                System.out.println(temp.get(0).toString() + temp.get(1).toString());
+            }
+        }
+
         do{
             if(players.get((players.size() - 1)).getAI()){
                 AIFlopBet(players.size() - 1);
@@ -125,6 +134,20 @@ public class Game{
             community.add(dealer.drawCard());
         }
 
+        String communityPool = "";
+
+        for(int i = 0; i < community.size(); i++){
+            communityPool += community.get(i).toString() + " ";
+        }
+        System.out.println(communityPool);
+        for(int i = 0; i < players.size(); i++){
+            if(!players.get(i).getAI()){
+                LinkedList<Card> temp = players.get(i).getTwoCardHand();
+                System.out.println(temp.get(0).toString() + temp.get(1).toString());
+            }
+        }
+
+
         biggestBet = 0;
 
         do{
@@ -158,6 +181,19 @@ public class Game{
         dealer.drawCard();
         community.add(dealer.drawCard());
 
+        String communityPool = "";
+
+        for(int i = 0; i < community.size(); i++){
+            communityPool += community.get(i).toString() + " ";
+        }
+        System.out.println(communityPool);
+        for(int i = 0; i < players.size(); i++){
+            if(!players.get(i).getAI()){
+                LinkedList<Card> temp = players.get(i).getTwoCardHand();
+                System.out.println(temp.get(0).toString() + temp.get(1).toString());
+            }
+        }
+
         biggestBet = 0;
         do{
             if(players.get(0).getAI()){
@@ -189,6 +225,20 @@ public class Game{
         }
         dealer.drawCard();
         community.add(dealer.drawCard());
+
+        String communityPool = "";
+
+        for(int i = 0; i < community.size(); i++){
+            communityPool += community.get(i).toString() + " ";
+        }
+        System.out.println(communityPool);
+        for(int i = 0; i < players.size(); i++){
+            if(!players.get(i).getAI()){
+                LinkedList<Card> temp = players.get(i).getTwoCardHand();
+                System.out.println(temp.get(0).toString() + temp.get(1).toString());
+            }
+        }
+
         biggestBet = 0;
         do{
             if(players.get(0).getAI()){
@@ -232,7 +282,10 @@ public class Game{
                 players.get(i).setInHand(false);
             }
         }
-        System.out.println("adds pot to winning players chip pool \n");
+        if(highestIndex >= 0){
+            System.out.println("player " + highestIndex + " wins the hand");
+        }
+
 
         if(highestIndex == -1){
             int numWinners = 0;
@@ -393,7 +446,7 @@ public class Game{
                     break;
             }
         }
-
+        sc.close();
     }
 
     private static boolean potsRight(){
