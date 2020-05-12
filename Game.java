@@ -254,36 +254,30 @@ public class Game{
     }
 
     private static int compareKickers(int a, int b){
-        if(players.get(a).getKickerOne() > players.get(b).getKickerOne()){
+        LinkedList<Card> handA = players.get(a).getFiveCardHand();
+        LinkedList<Card> handB = players.get(b).getFiveCardHand();
+
+        if(handA.get(0).getRankValue() > handB.get(0).getRankValue()){
             return a;
-        } else if(players.get(a).getKickerOne() < players.get(b).getKickerOne()){
+        } else if (handB.get(0).getRankValue() > handA.get(0).getRankValue()){
+            return b;
+        }else if(handA.get(1).getRankValue() > handB.get(1).getRankValue()){
+            return a;
+        } else if (handB.get(1).getRankValue() > handA.get(1).getRankValue()){
+            return b;
+        } else if(handA.get(2).getRankValue() > handB.get(2).getRankValue()){
+            return a;
+        } else if (handB.get(2).getRankValue() > handA.get(2).getRankValue()){
+            return b;
+        } else if(handA.get(3).getRankValue() > handB.get(3).getRankValue()){
+            return a;
+        } else if (handB.get(3).getRankValue() > handA.get(3).getRankValue()){
+            return b;
+        } else if(handA.get(4).getRankValue() > handB.get(4).getRankValue()){
+            return a;
+        } else if (handB.get(4).getRankValue() > handA.get(4).getRankValue()){
             return b;
         }
-
-        if(players.get(a).getKickerTwo() > players.get(b).getKickerTwo()){
-            return a;
-        } else if(players.get(a).getKickerTwo() < players.get(b).getKickerTwo()){
-            return b;
-        }
-
-        if(players.get(a).getKickerThree() > players.get(b).getKickerThree()){
-            return a;
-        } else if(players.get(a).getKickerThree() < players.get(b).getKickerThree()){
-            return b;
-        }
-
-        if(players.get(a).getKickerFour() > players.get(b).getKickerFour()){
-            return a;
-        } else if(players.get(a).getKickerFour() < players.get(b).getKickerFour()){
-            return b;
-        }
-
-        if(players.get(a).getKickerFive() > players.get(b).getKickerFive()){
-            return a;
-        } else if(players.get(a).getKickerFive() < players.get(b).getKickerFive()){
-            return b;
-        }
-
         return -1;
     }
 
