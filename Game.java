@@ -154,7 +154,7 @@ public class Game{
         }
         System.out.println(communityPool);
         for(int i = 0; i < players.size(); i++){
-            if(!players.get(i).getAI()){
+            if(!players.get(i).getAI() && players.get(i).getInHand()){
                 System.out.println(players.get(i).getTwoCardHand().get(0).toString() + players.get(i).getTwoCardHand().get(1).toString());
             }
         }
